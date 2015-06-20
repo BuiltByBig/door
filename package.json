@@ -1,7 +1,7 @@
 {
-  "name": "reactbase",
-  "version": "0.0.0",
-  "description": "",
+  "name": "door",
+  "version": "0.0.1",
+  "description": "RFID door lock application",
   "repository": "",
   "private": true,
   "src": "src",
@@ -16,9 +16,10 @@
     "normalize.css": "~3.0.3"
   },
   "scripts": {
-    "test": "karma start --auto-watch --no-single-run",
+    "format": "esformatter src/components/ReactBaseApp.js",
+    "test": "karma start",
     "watch": "grunt serve & npm run test",
-    "format": "esformatter src/components/ReactBaseApp.js"
+    "watch-test": "npm test -- --auto-watch --no-single-run"
   },
   "devDependencies": {
     "babel": "^5.5.8",
