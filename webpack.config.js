@@ -10,7 +10,7 @@ var webpack = require('webpack');
 module.exports = {
 
   output: {
-    filename: 'main.js',
+    filename: 'application.js',
     publicPath: '/assets/'
   },
 
@@ -19,7 +19,7 @@ module.exports = {
   devtool: false,
   entry: [
       'webpack/hot/only-dev-server',
-      './src/components/main.js'
+      './src/components/application.js'
   ],
 
   stats: {

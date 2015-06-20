@@ -75,6 +75,7 @@ module.exports = function (config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: ['PhantomJS'],
+    //browsers: ['Chrome'],
     reporters: ['spec'],
     captureTimeout: 60000,
     singleRun: true

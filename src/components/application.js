@@ -6,9 +6,9 @@ const ReactTransitionGroup = React.addons.TransitionGroup
 
 // CSS
 require('normalize.css')
-require('../styles/main.css')
+require('../styles/main.less')
 
-export default React.createClass({
+const Application = React.createClass({
 
   displayName: 'Application',
 
@@ -41,7 +41,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <NewCardForm
           handleSubmit={this._handleSubmit}
         />
@@ -54,3 +54,7 @@ export default React.createClass({
     )
   }
 })
+
+export default Application
+
+React.render(<Application />, document.body)

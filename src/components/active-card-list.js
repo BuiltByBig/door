@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/active-card-list.less'
 
 export default React.createClass({
 
@@ -16,31 +17,123 @@ export default React.createClass({
     }
   },
 
+  getInitialState() {
+    return {
+      activeCardIndex: null
+    }
+  },
+
+  _handleEdit(index) {
+    this.setState({
+      activeCardIndex: index
+    })
+  },
+
+  _handleSaveCard(e) {
+    e.preventDefault()
+    let name = this.refs.name.getDOMNode().value
+    let code = this.refs.code.getDOMNode().value
+    this.props.handleEdit(
+      this.state.activeCardIndex,
+      {
+        name,
+        code
+      }
+    )
+    this.setState({
+      activeCardIndex: null
+    })
+  },
+
+  _handleCancelEditing(e) {
+    e.preventDefault()
+    this.setState({
+      activeCardIndex: null
+    })
+  },
+
   render() {
     if (!this.props.cards.length) {
-      return <p>Sorry, there are no active cards</p>
+      return <p className='no-card-message'>Sorry, there are no active cards yet :-(</p>
     }
 
     let cards = this.props.cards.map((card, index) => {
+      let content
+
+      // Show the form for the active card
+      if (index === this.state.activeCardIndex) {
+        content = (
+          <form className='card-edit-form'>
+            <input
+              className='name-field'
+              defaultValue={card.name}
+              ref='name'
+            />
+            <input
+              className='code-field'
+              defaultValue={card.code}
+              ref='code'
+            />
+            <button
+              className='btn-primary'
+              onClick={(e) => {
+                this._handleSaveCard(e)
+              }}
+              ref='submit'
+              type='submit'
+            >
+              Save
+            </button>
+            <button
+              className='btn-danger'
+              onClick={(e) => {
+                this._handleCancelEditing(e)
+              }}
+              ref='cancel'
+            >
+              Cancel
+            </button>
+          </form>
+        )
+
+      // Another card is being edited.
+      } else {
+        let disabled = this.state.activeCardIndex !== null &&
+                       this.state.activeCardIndex >= 0
+
+        content = (
+          <div>
+            <span className='button-group'>
+              <button
+                className='btn-primary edit-button'
+                disabled={disabled}
+                onClick={() => {
+                  this._handleEdit(index)
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className='btn-danger delete-button'
+                onClick={this.props.handleDelete.bind(null, index)}
+              >
+                Delete
+              </button>
+            </span>
+            <strong className='name'>{card.name}</strong>
+            <em className='code'>{card.code}</em>
+          </div>
+        )
+
+      }
+
       return (
         <li key={index}>
-          {card.name} - {card.code}
-          <button
-            className='edit-button'
-            onClick={this.props.handleEdit}
-          >
-            Edit
-          </button>
-          <button
-            className='delete-button'
-            onClick={this.props.handleDelete}
-          >
-            Delete
-          </button>
+          {content}
         </li>
       )
     })
 
-    return <ul>{cards}</ul>
+    return <ul className='active-card-list'>{cards}</ul>
   }
 })

@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/new-card-form.less'
 
 export default React.createClass({
 
@@ -9,30 +10,46 @@ export default React.createClass({
   },
 
   _handleSubmit(e) {
-    this.props.handleSubmit({
-      name: this.refs.name.getDOMNode().value,
-      code: this.refs.code.getDOMNode().value
-    })
+    e.preventDefault()
+    let nameField = this.refs.name.getDOMNode()
+    let codeField = this.refs.code.getDOMNode()
+    let nameValue = nameField.value
+    let codeValue = codeField.value
+
+    if (nameValue && codeValue) {
+      this.props.handleSubmit({
+        name: nameValue,
+        code: codeValue
+      })
+
+      nameField.value = ''
+      codeField.value = ''
+
+      nameField.focus()
+    }
   },
 
   render() {
     return (
-      <form>
+      <form className='new-card-form'>
         <input
           className='name-field'
+          placeholder='Full name...'
           ref='name'
           type='text'
         />
         <input
           className='code-field'
+          placeholder='RFID code...'
           ref='code'
           type='text'
         />
         <button
           className='submit-button'
           onClick={this._handleSubmit}
+          ref='submit'
         >
-          Submit
+          Add New Card
         </button>
       </form>
     )
