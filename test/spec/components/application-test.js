@@ -50,6 +50,10 @@ describe('<Application />', () => {
     activeCardList.props.cards.should.eql(cards)
   })
 
+  xit('should fetch a list of cards from the API', () => {
+
+  })
+
   describe('_handleSubmit()', () => {
     it('should update the card list with a new card', () => {
       let cards = [

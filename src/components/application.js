@@ -1,6 +1,7 @@
 import React from 'react/addons'
 import NewCardForm from 'components/new-card-form'
 import ActiveCardList from 'components/active-card-list'
+import FontAwesome from 'react-fontawesome'
 
 const ReactTransitionGroup = React.addons.TransitionGroup
 
@@ -42,6 +43,9 @@ const Application = React.createClass({
   render() {
     return (
       <div className='container'>
+        <div className='logo'>
+          <FontAwesome name='lock' />
+        </div>
         <NewCardForm
           handleSubmit={this._handleSubmit}
         />
