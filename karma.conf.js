@@ -5,18 +5,16 @@ var path = require('path');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha','chai-sinon'],
+    frameworks: [
+      'mocha',
+      'phantomjs-shim',
+      'chai-sinon'
+    ],
     files: [
-      'test/helpers/**/*.js',
-      'test/spec/components/**/*.js',
-      'test/spec/stores/**/*.js',
-      'test/spec/actions/**/*.js'
+      'test/spec/**/*-test.js'
     ],
     preprocessors: {
-      'test/spec/components/**/*.js': ['webpack'],
-      'test/spec/components/**/*.jsx': ['webpack'],
-      'test/spec/stores/**/*.js': ['webpack'],
-      'test/spec/actions/**/*.js': ['webpack']
+      'test/**/*.js': ['webpack']
     },
     webpack: {
       cache: true,
@@ -51,6 +49,7 @@ module.exports = function (config) {
         alias: {
           'styles': path.join(process.cwd(), './src/styles/'),
           'components': path.join(process.cwd(), './src/components/'),
+          'models': path.join(process.cwd(), './src/models/'),
           'stores': '../../../src/stores/',
           'actions': '../../../src/actions/'
         }
