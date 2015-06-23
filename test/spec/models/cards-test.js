@@ -1,8 +1,8 @@
 import Cards from 'models/cards'
 import mockRequest from '../../helpers/mock-request'
 
-describe.only('Cards', () => {
-  describe('fetch', () => {
+describe('Cards', () => {
+  describe('.fetch()', () => {
     it('should properly construct the query', done => {
       let response = {
         body: {
@@ -42,6 +42,41 @@ describe.only('Cards', () => {
         .catch(err => {
           expect(err).to.exist
           expect(err.message).to.eql('Shit broke')
+        })
+        .finally(() => {
+          Cards._request.restore()
+          done()
+        })
+    })
+  })
+
+  describe.only('.update()', () => {
+    it('should update the list of cards', done => {
+      let cards = []
+      let mockReq = mockRequest(null, null)
+      sinon.stub(Cards, '_request').returns(mockReq)
+      Cards
+        .update(cards)
+        .then(() => {
+          expect(mockReq.method).to.eql('PUT')
+          expect(mockReq.url).to.eql('/api/cards')
+          expect(mockReq.headers['Accept']).to.eql('application/json')
+        })
+        .finally(() => {
+          Cards._request.restore()
+          done()
+        })
+    })
+
+    it('should update the list of cards', done => {
+      let cards = []
+      let mockReq = mockRequest(new Error('Bad stuff'), null)
+      sinon.stub(Cards, '_request').returns(mockReq)
+      Cards
+        .update(cards)
+        .catch(err => {
+          expect(err).to.exist
+          expect(err.message).to.eql('Bad stuff')
         })
         .finally(() => {
           Cards._request.restore()
