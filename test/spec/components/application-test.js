@@ -52,7 +52,7 @@ describe('<Application />', () => {
     })
       // TODO Assert setState is called with new cards
 
-    xit('should set state.errorMessage when the api returns an erro', () => {
+    xit('should set state.errorMessage when the api returns an error', () => {
 
     })
   })
