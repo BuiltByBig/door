@@ -5,7 +5,7 @@ export default {
   fetch() {
     return new Promise((resolve, reject) => {
       this._request()
-      .get(`/api/cards`)
+      .get('/api/cards')
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
@@ -20,7 +20,7 @@ export default {
   update() {
     return new Promise((resolve, reject) => {
       this._request()
-      .put(`/api/cards`)
+      .put('/api/cards')
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {

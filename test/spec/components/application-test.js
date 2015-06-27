@@ -1,16 +1,29 @@
 'use strict'
 
+const Promise = require('bluebird')
 const React = require('react/addons')
 const TestUtils = require('react/lib/ReactTestUtils')
 const Application = require('components/application')
 const NewCardForm = require('components/new-card-form')
 const ActiveCardList = require('components/active-card-list')
+const Cards = require('models/cards')
+
+function fuck() {
+  return Promise.resolve()
+}
 
 describe('<Application />', () => {
   let element
 
   beforeEach(() => {
+    sinon.stub(Cards, 'fetch', fuck)
     element = TestUtils.renderIntoDocument(<Application />)
+  })
+
+
+
+  afterEach(() => {
+    Cards.fetch.restore()
   })
 
   it('renders', () => {
@@ -36,6 +49,18 @@ describe('<Application />', () => {
     newCardForm.props.handleSubmit.should.eql(element._handleSubmit)
   })
 
+
+  describe('componetWillMount', function () {
+    it('should call cards.fetch() and update state.cards', () => {
+      sinon.assert.calledOnce(Cards.fetch)
+    })
+      // TODO Assert setState is called with new cards
+
+    xit('should set state.errorMessage when the api returns an erro', () => {
+      
+    })
+  })
+
   it('should pass cards to ActiveCardList', () => {
     let cards = [
       {
@@ -51,8 +76,20 @@ describe('<Application />', () => {
   })
 
   xit('should fetch a list of cards from the API', () => {
-
+    let cards = [
+      {
+        name: 'John Smith',
+        code: 'asdf'
+      },
+      {
+        name: 'Foo Bar',
+        code: 'qwerty'
+      }
+    ]
+    sinon.stub(element, '_fetchCards').returns(cards)
+    expect(element.state.cards).to.eql(cards)
   })
+
 
   describe('_handleSubmit()', () => {
     it('should update the card list with a new card', () => {
@@ -77,25 +114,55 @@ describe('<Application />', () => {
   })
 
   describe('_handleEdit()', () => {
-    it('should replace the card in the list with a new card', () => {
-      let cards = [
+    let cards
+    let newCard
+
+    beforeEach(() => {
+      cards = [
         {
           name: 'Foo',
           code: 'bar'
         }
       ]
-      element.setState({
-        cards: cards
-      })
-      element.state.cards.should.have.length(1)
-      let newCard = {
+      newCard = {
         name: 'John',
         code: 'asdf'
       }
+
+      element.setState({
+        cards
+      })
+
+      element.state.cards.should.have.length(1)
+    })
+
+    afterEach(()=>{
+      Cards.update.restore()
+    })
+
+    it('should replace the card in the list with a new card', () => {
+      sinon.stub(Cards, 'update', fuck)
       element._handleEdit(0, newCard)
       element.state.cards.should.have.length(1)
       element.state.cards[0].name.should.eql('John')
       element.state.cards[0].code.should.eql('asdf')
+    })
+
+    it('should call the Cards model with the updated list of cards', () => {
+      sinon.stub(Cards, 'update', fuck)
+      element._handleEdit(0, newCard)
+      sinon.assert.calledWith(Cards.update, element.state.cards)
+    })
+
+    it('should set errorMessage if an error occurs while updating', done => {
+      sinon.stub(Cards, 'update', () => {
+        return Promise.reject(new Error('Server broke'))
+      })
+      element._handleEdit(0, newCard)
+        .finally(err => {
+          expect(element.state.errorMessage).to.eql('Server broke')
+          done()
+        })
     })
   })
 

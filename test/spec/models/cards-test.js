@@ -50,7 +50,7 @@ describe('Cards', () => {
     })
   })
 
-  describe.only('.update()', () => {
+  describe('.update()', () => {
     it('should update the list of cards', done => {
       let cards = []
       let mockReq = mockRequest(null, null)

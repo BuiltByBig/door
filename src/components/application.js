@@ -2,6 +2,7 @@ import React from 'react/addons'
 import NewCardForm from 'components/new-card-form'
 import ActiveCardList from 'components/active-card-list'
 import FontAwesome from 'react-fontawesome'
+import Cards from 'models/cards'
 
 const ReactTransitionGroup = React.addons.TransitionGroup
 
@@ -18,6 +19,23 @@ const Application = React.createClass({
       cards: []
     }
   },
+  componentWillMount(){
+    this._fetchCards()
+  },
+
+  _fetchCards() {
+    return Cards.fetch()
+      .then(cards => {
+        this.setState({
+          cards: cards
+        })
+      })
+      .catch(err => {
+        this.setState({
+          errorMessage: err.message
+        })
+      })
+  },
 
   _handleSubmit(card) {
     this.state.cards.push(card)
@@ -31,6 +49,13 @@ const Application = React.createClass({
     this.setState({
       cards: this.state.cards
     })
+    return Cards
+      .update(this.state.cards)
+      .catch(err => {
+        this.setState({
+          errorMessage: err.message
+        })
+      })
   },
 
   _handleDelete(index) {

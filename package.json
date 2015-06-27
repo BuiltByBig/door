@@ -20,7 +20,7 @@
   "scripts": {
     "format": "esformatter src/components/ReactBaseApp.js",
     "test": "karma start",
-    "watch": "grunt serve & npm run test",
+    "watch": "grunt serve & npm run watch-test",
     "watch-test": "npm test -- --auto-watch --no-single-run"
   },
   "devDependencies": {
