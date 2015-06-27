@@ -48,9 +48,12 @@ describe('<NewCardForm />', () => {
     sinon.assert.called(eventSpy)
   })
 
-  xit('should call the handleSubmit prop when clicking the submit button with card details', (done) => {
+  it('should call the handleSubmit prop when clicking the submit button with card details', () => {
+    // debugger
     let nameField = element.refs.name
     let codeField = element.refs.code
+
+    sinon.spy(nameField.getDOMNode(), 'focus')
 
     nameField.getDOMNode().value = 'Foo'
     codeField.getDOMNode().value = 'bar'
@@ -65,7 +68,7 @@ describe('<NewCardForm />', () => {
     expect(nameField.getDOMNode().value).to.eql('')
     expect(codeField.getDOMNode().value).to.eql('')
 
-    expect(nameField.getDOMNode()).to.eql(document.activeElement)
+    sinon.assert.called(nameField.getDOMNode().focus)
   })
 
   it('should require both name and code to submit', () => {
