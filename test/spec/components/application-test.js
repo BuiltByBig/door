@@ -8,15 +8,11 @@ const NewCardForm = require('components/new-card-form')
 const ActiveCardList = require('components/active-card-list')
 const Cards = require('models/cards')
 
-function fuck() {
-  return Promise.resolve()
-}
-
 describe('<Application />', () => {
   let element
 
   beforeEach(() => {
-    sinon.stub(Cards, 'fetch', fuck)
+    sinon.stub(Cards, 'fetch', Promise.resolve)
     element = TestUtils.renderIntoDocument(<Application />)
   })
 
@@ -57,7 +53,7 @@ describe('<Application />', () => {
       // TODO Assert setState is called with new cards
 
     xit('should set state.errorMessage when the api returns an erro', () => {
-      
+
     })
   })
 
@@ -141,7 +137,7 @@ describe('<Application />', () => {
     })
 
     it('should replace the card in the list with a new card', () => {
-      sinon.stub(Cards, 'update', fuck)
+      sinon.stub(Cards, 'update', Promise.resolve)
       element._handleEdit(0, newCard)
       element.state.cards.should.have.length(1)
       element.state.cards[0].name.should.eql('John')
@@ -149,7 +145,7 @@ describe('<Application />', () => {
     })
 
     it('should call the Cards model with the updated list of cards', () => {
-      sinon.stub(Cards, 'update', fuck)
+      sinon.stub(Cards, 'update', Promise.resolve)
       element._handleEdit(0, newCard)
       sinon.assert.calledWith(Cards.update, element.state.cards)
     })
