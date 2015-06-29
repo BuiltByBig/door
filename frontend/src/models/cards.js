@@ -11,7 +11,7 @@ export default {
         if (err) {
           return reject(err)
         }
-        let cards = res.body.cards
+        let cards = res.body
         resolve(cards)
       })
     })

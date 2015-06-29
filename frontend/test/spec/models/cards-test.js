@@ -5,18 +5,16 @@ describe('Cards', () => {
   describe('.fetch()', () => {
     it('should properly construct the query', done => {
       let response = {
-        body: {
-          cards: [
-            {
-              name: 'Bill',
-              code: '123'
-            },
-            {
-              name: 'Jane',
-              code: 'uyiou'
-            }
-          ]
-        }
+        body: [
+          {
+            name: 'Bill',
+            code: '123'
+          },
+          {
+            name: 'Jane',
+            code: 'uyiou'
+          }
+        ]
       }
       let mockReq = mockRequest(null, response)
       sinon.stub(Cards, '_request').returns(mockReq)
