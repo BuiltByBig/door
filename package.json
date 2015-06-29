@@ -1,0 +1,37 @@
+{
+  "name": "door",
+  "version": "1.0.0",
+  "description": "Doorlock application",
+  "main": "index.js",
+  "scripts": {
+    "watch": "parallelshell 'npm run watch-backend' 'npm run watch-frontend'",
+    "watch-backend": "cd backend && npm run watch",
+    "watch-frontend": "cd frontend && npm run watch",
+    "test": "parallelshell 'npm run test-backend' 'npm run test-frontend'",
+    "test-backend": "cd backend && npm run test",
+    "test-frontend": "cd frontend && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuiltByBig/door.git"
+  },
+  "keywords": [
+    "door",
+    "security",
+    "makerspace",
+    "hackerspace",
+    "door",
+    "lock",
+    "RFID"
+  ],
+  "author": "Dana Woodman <dana@danawoodman.com> (http://danawoodman.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BuiltByBig/door/issues"
+  },
+  "homepage": "https://github.com/BuiltByBig/door#readme",
+  "devDependencies": {
+    "nightwatch": "^0.7.4",
+    "parallelshell": "^1.2.0"
+  }
+}
