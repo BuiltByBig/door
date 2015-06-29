@@ -18,6 +18,7 @@
     "superagent": "^1.2.0"
   },
   "scripts": {
+    "build": "grunt build:dist",
     "format": "esformatter src/components/ReactBaseApp.js",
     "test": "karma start",
     "watch": "grunt serve & npm run watch-test",
