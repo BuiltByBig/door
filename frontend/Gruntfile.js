@@ -112,7 +112,6 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'open:dev',
       'webpack-dev-server'
     ]);
   });
