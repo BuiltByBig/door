@@ -16,7 +16,7 @@ body {
 .container {
   margin: 30px auto;
   text-align: left;
-  max-width: 680px;
+  max-width: @page-width;
 }
 
 .logo {
@@ -24,4 +24,14 @@ body {
   font-size: 100px;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.alert {
+  font-size: 20px;
+  margin: 0 0 30px 0;
+  text-align: center;
+
+  &.alert-danger {
+    color: darken(red, 10%);
+  }
 }

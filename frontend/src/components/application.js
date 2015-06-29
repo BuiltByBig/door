@@ -8,7 +8,7 @@ const ReactTransitionGroup = React.addons.TransitionGroup
 
 // CSS
 require('normalize.css')
-require('../styles/main.less')
+require('../styles/application.less')
 
 const Application = React.createClass({
 
@@ -19,6 +19,7 @@ const Application = React.createClass({
       cards: []
     }
   },
+
   componentWillMount(){
     this._fetchCards()
   },
