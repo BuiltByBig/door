@@ -67,11 +67,21 @@ const Application = React.createClass({
   },
 
   render() {
+    let errorMessage
+    if (this.state.errorMessage) {
+      errorMessage = (
+        <div className='alert alert-danger'>
+          {this.state.errorMessage}
+        </div>
+      )
+    }
+
     return (
       <div className='container'>
         <div className='logo'>
           <FontAwesome name='lock' />
         </div>
+        {errorMessage}
         <NewCardForm
           handleSubmit={this._handleSubmit}
         />

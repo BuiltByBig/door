@@ -55,6 +55,15 @@ describe('<Application />', () => {
     })
   })
 
+  it('should display an error message if set', () => {
+    let message = 'This is an error message'
+    element.setState({
+      errorMessage: message
+    })
+    let text = element.getDOMNode().textContent
+    expect(text).to.contain(message)
+  })
+
   it('should pass cards to ActiveCardList', () => {
     let cards = [
       {
