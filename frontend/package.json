@@ -19,15 +19,14 @@
   },
   "config": {
     "appPath": "./src",
-    "distPath": "./dist",
-    "port": "3000"
+    "distPath": "./dist"
   },
   "scripts": {
     "build": "webpack --colors",
     "build-development": "npm run build -- --config webpack.development.config.js",
     "build-production": "npm run build -- --config webpack.production.config.js -p",
     "clean": "rm -fr $npm_package_config_distPath/*",
-    "dev-server": "webpack-dev-server --content-base $npm_package_config_distPath --history-api-fallback --colors --port $npm_package_config_port --hot",
+    "dev-server": "webpack-dev-server --config webpack.development.config.js --history-api-fallback --colors --inline --hot",
     "env": "env",
     "lint": "eslint .",
     "prebuild": "npm run clean",
