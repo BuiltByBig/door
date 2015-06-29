@@ -64,6 +64,13 @@ const Application = React.createClass({
     this.setState({
       cards: this.state.cards
     })
+    return Cards
+      .update(this.state.cards)
+      .catch(err => {
+        this.setState({
+          errorMessage: err.message
+        })
+      })
   },
 
   render() {
