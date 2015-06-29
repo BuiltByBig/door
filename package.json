@@ -13,7 +13,10 @@
     "test-frontend": "cd frontend && npm run test",
     "watch": "parallelshell 'npm run watch-backend' 'npm run watch-frontend'",
     "watch-backend": "cd backend && npm run watch",
-    "watch-frontend": "cd frontend && npm run watch"
+    "watch-frontend": "cd frontend && npm run watch",
+    "watch-test": "parallelshell 'npm run watch-test-backend' 'npm run watch-test-frontend'",
+    "watch-test-backend": "cd backend && npm run watch-test",
+    "watch-test-frontend": "cd frontend && npm run watch-test"
   },
   "repository": {
     "type": "git",
