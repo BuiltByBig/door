@@ -4,12 +4,16 @@
   "description": "Doorlock application",
   "main": "index.js",
   "scripts": {
-    "watch": "parallelshell 'npm run watch-backend' 'npm run watch-frontend'",
-    "watch-backend": "cd backend && npm run watch",
-    "watch-frontend": "cd frontend && npm run watch",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "postinstall": "parallelshell 'npm run install-frontend' 'npm run install-backend'",
+    "install-backend": "cd backend && npm install",
     "test": "parallelshell 'npm run test-backend' 'npm run test-frontend'",
     "test-backend": "cd backend && npm run test",
-    "test-frontend": "cd frontend && npm run test"
+    "test-frontend": "cd frontend && npm run test",
+    "watch": "parallelshell 'npm run watch-backend' 'npm run watch-frontend'",
+    "watch-backend": "cd backend && npm run watch",
+    "watch-frontend": "cd frontend && npm run watch"
   },
   "repository": {
     "type": "git",
