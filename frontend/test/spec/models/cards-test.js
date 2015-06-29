@@ -1,4 +1,4 @@
-import Cards from 'models/cards'
+import Cards from 'app/models/cards'
 import mockRequest from '../../helpers/mock-request'
 
 describe('Cards', () => {

@@ -1,12 +1,10 @@
-'use strict'
-
-const Promise = require('bluebird')
-const React = require('react/addons')
-const TestUtils = require('react/lib/ReactTestUtils')
-const Application = require('components/application')
-const NewCardForm = require('components/new-card-form')
-const ActiveCardList = require('components/active-card-list')
-const Cards = require('models/cards')
+import Promise from 'bluebird'
+import React from 'react/addons'
+import TestUtils from 'react/lib/ReactTestUtils'
+import Application from 'app/components/application'
+import NewCardForm from 'app/components/new-card-form'
+import ActiveCardList from 'app/components/active-card-list'
+import Cards from 'app/models/cards'
 
 describe('<Application />', () => {
   let element

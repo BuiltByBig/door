@@ -3,20 +3,24 @@
   "version": "1.0.0",
   "description": "Doorlock application",
   "main": "index.js",
+  "config": {
+    "backendPath": "backend",
+    "frontendPath": "frontend",
+    "port": "3000"
+  },
   "scripts": {
-    "install-backend": "cd backend && npm install",
-    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd $npm_package_config_backendPath && npm install",
+    "install-frontend": "cd $npm_package_config_frontendPath && npm install",
     "postinstall": "parallelshell 'npm run install-frontend' 'npm run install-backend'",
-    "install-backend": "cd backend && npm install",
     "test": "parallelshell 'npm run test-backend' 'npm run test-frontend'",
-    "test-backend": "cd backend && npm run test",
-    "test-frontend": "cd frontend && npm run test",
+    "test-backend": "cd $npm_package_config_backendPath && npm run test",
+    "test-frontend": "cd $npm_package_config_frontendPath && npm run test",
     "watch": "parallelshell 'npm run watch-backend' 'npm run watch-frontend'",
-    "watch-backend": "cd backend && npm run watch",
-    "watch-frontend": "cd frontend && npm run watch",
+    "watch-backend": "cd $npm_package_config_backendPath && npm run watch",
+    "watch-frontend": "cd $npm_package_config_frontendPath && npm run watch",
     "watch-test": "parallelshell 'npm run watch-test-backend' 'npm run watch-test-frontend'",
-    "watch-test-backend": "cd backend && npm run watch-test",
-    "watch-test-frontend": "cd frontend && npm run watch-test"
+    "watch-test-backend": "cd $npm_package_config_backendPath && npm run watch-test",
+    "watch-test-frontend": "cd $npm_package_config_frontendPath && npm run watch-test"
   },
   "repository": {
     "type": "git",

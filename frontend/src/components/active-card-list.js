@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/active-card-list.less'
+import 'app/styles/active-card-list.less'
 
 export default React.createClass({
 

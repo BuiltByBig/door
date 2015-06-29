@@ -1,8 +1,8 @@
 import React from 'react/addons'
-import NewCardForm from 'components/new-card-form'
-import ActiveCardList from 'components/active-card-list'
+import NewCardForm from 'app/components/new-card-form'
+import ActiveCardList from 'app/components/active-card-list'
 import FontAwesome from 'react-fontawesome'
-import Cards from 'models/cards'
+import Cards from 'app/models/cards'
 
 const ReactTransitionGroup = React.addons.TransitionGroup
 

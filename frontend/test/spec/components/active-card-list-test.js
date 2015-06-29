@@ -1,6 +1,6 @@
 import React from 'react/addons'
 import TestUtils from 'react/lib/ReactTestUtils'
-import ActiveCardList from 'components/active-card-list'
+import ActiveCardList from 'app/components/active-card-list'
 
 describe('<ActiveCardList />', () => {
   let deleteSpy

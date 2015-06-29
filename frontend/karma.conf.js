@@ -1,6 +1,4 @@
-'use strict';
-
-var path = require('path');
+var webpackConfig = require('./webpack.test.config')
 
 module.exports = function (config) {
   config.set({
@@ -8,63 +6,28 @@ module.exports = function (config) {
     frameworks: [
       'mocha',
       'phantomjs-shim',
+      'chai',
       'chai-sinon'
     ],
     files: [
-      'test/spec/**/*-test.js'
+      'test/**/*-test.js'
     ],
     preprocessors: {
-      'test/**/*.js': ['webpack']
+      'test/**/*.js': ['webpack'],
+      'src/**/*.js': ['webpack']
     },
-    webpack: {
-      cache: true,
-      module: {
-        loaders: [{
-          test: /\.gif/,
-          loader: 'url-loader?limit=10000&mimetype=image/gif'
-        }, {
-          test: /\.jpg/,
-          loader: 'url-loader?limit=10000&mimetype=image/jpg'
-        }, {
-          test: /\.png/,
-          loader: 'url-loader?limit=10000&mimetype=image/png'
-        }, {
-          test: /\.(js|jsx)$/,
-          loader: 'babel-loader'
-        }, {
-          test: /\.less/,
-          loader: 'style-loader!css-loader!less-loader'
-        }, {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader'
-        }, {
-          test: /\.woff/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-        }, {
-          test: /\.woff2/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff2'
-        }]
-      },
-      resolve: {
-        alias: {
-          'styles': path.join(process.cwd(), './src/styles/'),
-          'components': path.join(process.cwd(), './src/components/'),
-          'models': path.join(process.cwd(), './src/models/'),
-          'stores': '../../../src/stores/',
-          'actions': '../../../src/actions/'
-        }
-      }
-    },
+    webpack: webpackConfig,
     webpackServer: {
+      //quiet: true,
       stats: {
         colors: true
       }
     },
     exclude: [],
-    port: 8080,
+    port: 9876,
     logLevel: config.LOG_INFO,
     colors: true,
-    autoWatch: false,
+    autoWatchBatchDelay: 500,
     // Start these browsers, currently available:
     // - Chrome
     // - ChromeCanary
@@ -73,10 +36,15 @@ module.exports = function (config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
-    //browsers: ['Chrome'],
-    reporters: ['spec'],
+    browsers: [
+      //'Chrome',
+      'PhantomJS'
+    ],
+    reporters: [
+      'nyan',
+      'clear-screen'
+    ],
     captureTimeout: 60000,
     singleRun: true
-  });
-};
+  })
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/new-card-form.less'
+import 'app/styles/new-card-form.less'
 
 export default React.createClass({
 

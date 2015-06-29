@@ -1,8 +1,6 @@
-'use strict';
-
-const React = require('react/addons');
-const TestUtils = require('react/lib/ReactTestUtils');
-const NewCardForm = require('components/new-card-form');
+import React from 'react/addons'
+import TestUtils from 'react/lib/ReactTestUtils'
+import NewCardForm from 'app/components/new-card-form'
 
 describe('<NewCardForm />', () => {
   let element

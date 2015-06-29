@@ -27,7 +27,7 @@ The backend wraps the file in a RESTful JSON API that the frontend consumes to l
 
 ## TODO
 
-- [ ] Read JSON from filesystem.
+- [x] Read JSON from filesystem.
 - [ ] RESTful API to read and update JSON file.
 - [ ] Coverage tool.
 - [ ] Dist build for deployment.
