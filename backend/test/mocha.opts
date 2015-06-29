@@ -1,0 +1,6 @@
+--require test/helpers
+--compilers js:babel/register
+--recursive
+--colors
+-u bdd
+-R nyan

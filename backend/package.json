@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "description": "Backend for doorlock application",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "iojs --use_strict --harmony --es_staging src/app.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "rfid",
+    "doorlock",
+    "makerspace"
+  ],
+  "author": "Dana Woodman <dana@danawoodman.com> (http://danawoodman.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "express": "^4.13.0"
+  },
+  "engines": {
+    "iojs": "2.0.x",
+    "npm": "2.9.x"
+  }
+}
