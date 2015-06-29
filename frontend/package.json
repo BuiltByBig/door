@@ -75,6 +75,7 @@
     "less-loader": "^2.2.0",
     "load-grunt-tasks": "~3.2.0",
     "mocha": "^2.2.5",
+    "parallelshell": "^1.2.0",
     "react-hot-loader": "^1.2.7",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
