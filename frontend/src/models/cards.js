@@ -5,29 +5,30 @@ export default {
   fetch() {
     return new Promise((resolve, reject) => {
       this._request()
-      .get('/api/cards')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) {
-          return reject(err)
-        }
-        let cards = res.body
-        resolve(cards)
-      })
+        .get('/api/cards')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (err) {
+            return reject(err)
+          }
+          let cards = res.body
+          resolve(cards)
+        })
     })
   },
 
-  update() {
+  update(cards) {
     return new Promise((resolve, reject) => {
       this._request()
-      .put('/api/cards')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) {
-          return reject(err)
-        }
-        resolve()
-      })
+        .post('/api/cards')
+        .send(cards)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (err) {
+            return reject(err)
+          }
+          resolve()
+        })
     })
   },
 

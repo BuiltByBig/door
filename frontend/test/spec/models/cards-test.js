@@ -50,13 +50,19 @@ describe('Cards', () => {
 
   describe('.update()', () => {
     it('should update the list of cards', done => {
-      let cards = []
+      let cards = [
+        {
+          name: 'foo',
+          code: '123123'
+        }
+      ]
       let mockReq = mockRequest(null, null)
       sinon.stub(Cards, '_request').returns(mockReq)
       Cards
         .update(cards)
         .then(() => {
-          expect(mockReq.method).to.eql('PUT')
+          expect(mockReq.method).to.eql('POST')
+          expect(mockReq.data).to.eql(cards)
           expect(mockReq.url).to.eql('/api/cards')
           expect(mockReq.headers['Accept']).to.eql('application/json')
         })

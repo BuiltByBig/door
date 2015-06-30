@@ -43,4 +43,36 @@ describe('CardList', () => {
 
     })
   })
+
+  describe('.write()', () => {
+    beforeEach(() => {
+      sinon.stub(fs, 'writeFile', (path, data, cb) => {
+        return cb(null)
+      })
+    })
+
+    afterEach(() => {
+      fs.writeFile.restore()
+    })
+
+    it('should write new list of cards to the file', () => {
+      let cards = [
+        {
+          name: 'Test Person',
+          code: '1234'
+        },
+        {
+          name: 'Foobar',
+          code: 'adsfasdf'
+        }
+      ]
+
+      let promise = CardList.write(cards)
+
+      sinon.assert.calledWith(fs.writeFile, CardList.CARDS_FILE, JSON.stringify(cards))
+
+      return expect(promise)
+        .to.eventually.deep.equal(cards)
+    })
+  })
 })

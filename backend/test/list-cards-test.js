@@ -1,43 +1,88 @@
 import CardList from '../src/models/card-list'
-import listCards from '../src/list-cards'
+import CardsHandler from '../src/list-cards'
 
 describe('List cards', () => {
-  let cards
-  let promise
+  describe('.list()', () => {
+    let cards
+    let promise
 
-  beforeEach(() => {
-    cards = [
-      {
-        name: 'Batman',
-        code: '00000123456'
-      },
-      {
-        name: 'Fake Person',
-        code: '223344'
+    beforeEach(() => {
+      cards = [
+        {
+          name: 'Batman',
+          code: '00000123456'
+        },
+        {
+          name: 'Fake Person',
+          code: '223344'
+        }
+      ]
+
+      promise = Promise.resolve(cards)
+
+      sinon.stub(CardList, 'read', () => promise)
+    })
+
+    afterEach(() => {
+      CardList.read.restore()
+    })
+
+    it('should return a list of cards from the API', () => {
+      let res = {
+        json: sinon.spy()
       }
-    ]
 
-    promise = Promise.resolve(cards)
+      CardsHandler.list({}, res)
 
-    sinon.stub(CardList, 'read', () => promise)
+
+      return expect(promise)
+        .to.eventually.deep.equal(cards)
+        .then(() => {
+          sinon.assert.calledWith(res.json, cards)
+        })
+    })
   })
 
-  afterEach(() => {
-    CardList.read.restore()
-  })
+  describe('.update()', () => {
+    let cards
+    let promise
 
-  it('should return a list of cards from the API', () => {
-    let res = {
-      json: sinon.spy()
-    }
+    beforeEach(() => {
+      cards = [
+        {
+          name: 'Batman',
+          code: '00000123456'
+        },
+        {
+          name: 'Fake Person',
+          code: '223344'
+        }
+      ]
 
-    listCards({}, res)
+      promise = Promise.resolve(cards)
 
+      sinon.stub(CardList, 'write', () => promise)
+    })
 
-    return expect(promise)
-      .to.eventually.deep.equal(cards)
-      .then(() => {
-        sinon.assert.calledWith(res.json, cards)
-      })
+    afterEach(() => {
+      CardList.write.restore()
+    })
+
+    it('should return a list of cards from the API', () => {
+      let res = {
+        json: sinon.spy()
+      }
+
+      CardsHandler.update({
+        body: cards
+      }, res)
+
+      return expect(promise)
+        .to.eventually.deep.equal(cards)
+        .then(() => {
+          sinon.assert.calledWith(CardList.write, cards)
+          sinon.assert.calledWith(res.json, cards)
+        })
+    })
   })
 })

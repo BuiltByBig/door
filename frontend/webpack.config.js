@@ -11,7 +11,7 @@ var APP_NAME = 'Doorlock'
 module.exports = {
   entry: {
     bundle: [
-      './src/components/application.js'
+      './src/index.js'
       //path.join('.', SOURCE, 'components/application.js')
     ]
   },

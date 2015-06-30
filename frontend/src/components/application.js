@@ -25,7 +25,8 @@ const Application = React.createClass({
   },
 
   _fetchCards() {
-    return Cards.fetch()
+    return Cards
+      .fetch()
       .then(cards => {
         this.setState({
           cards: cards
@@ -43,6 +44,13 @@ const Application = React.createClass({
     this.setState({
       cards: this.state.cards
     })
+    return Cards
+      .update(this.state.cards)
+      .catch(err => {
+        this.setState({
+          errorMessage: err.message
+        })
+      })
   },
 
   _handleEdit(index, newCard) {
@@ -103,5 +111,3 @@ const Application = React.createClass({
 })
 
 export default Application
-
-React.render(<Application />, document.body)

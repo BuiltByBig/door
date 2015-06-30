@@ -81,24 +81,52 @@ describe('<Application />', () => {
   })
 
   describe('_handleSubmit()', () => {
-    it('should update the card list with a new card', () => {
-      let cards = [
+    let cards
+    let newCard
+
+    beforeEach(() => {
+      cards = [
         {
           name: 'Foo',
           code: 'bar'
         }
       ]
+      newCard = {
+        name: 'Catman',
+        code: 'cats'
+      }
+    })
+
+    afterEach(()=>{
+      Cards.update.restore()
+    })
+
+    it('should update the card list with a new card', () => {
+      sinon.stub(Cards, 'update', Promise.resolve)
       element.setState({
         cards: cards
       })
       element.state.cards.should.have.length(1)
-      let card = {
-        name: 'Catman',
-        code: 'cats'
-      }
-      element._handleSubmit(card)
+      element._handleSubmit(newCard)
       element.state.cards.should.have.length(2)
       element.state.cards[1].name.should.eql('Catman')
+    })
+
+    it('should call the Cards model with the updated list of cards', () => {
+      sinon.stub(Cards, 'update', Promise.resolve)
+      element._handleSubmit(newCard)
+      sinon.assert.calledWith(Cards.update, element.state.cards)
+    })
+
+    it('should set errorMessage if an error occurs while updating', done => {
+      sinon.stub(Cards, 'update', () => {
+        return Promise.reject(new Error('Server broke'))
+      })
+      element._handleSubmit(newCard)
+        .finally(err => {
+          expect(element.state.errorMessage).to.eql('Server broke')
+          done()
+        })
     })
   })
 
@@ -113,6 +141,7 @@ describe('<Application />', () => {
           code: 'bar'
         }
       ]
+
       newCard = {
         name: 'John',
         code: 'asdf'
@@ -156,8 +185,10 @@ describe('<Application />', () => {
   })
 
   describe('_handleDelete()', () => {
-    it('should remove the card from the list', () => {
-      let cards = [
+    let cards
+
+    beforeEach(() => {
+      cards = [
         {
           name: 'Foo',
           code: 'bar'
@@ -167,13 +198,24 @@ describe('<Application />', () => {
           code: 'bap'
         }
       ]
+
       element.setState({
-        cards: cards
+        cards
       })
+
       element.state.cards.should.have.length(2)
+    })
+
+    afterEach(()=>{
+      Cards.update.restore()
+    })
+
+    it('should remove the card from the list', () => {
+      sinon.stub(Cards, 'update', Promise.resolve)
       element._handleDelete(1)
       element.state.cards.should.have.length(1)
       element.state.cards[0].name.should.eql('Foo')
+      sinon.assert.calledWith(Cards.update, element.state.cards)
     })
   })
 })
