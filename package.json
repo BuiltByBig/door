@@ -9,10 +9,13 @@
     "port": "3000"
   },
   "scripts": {
+    "build": "cd $npm_package_config_frontendPath && npm run build-production",
     "install-backend": "cd $npm_package_config_backendPath && npm install",
     "install-frontend": "cd $npm_package_config_frontendPath && npm install",
     "postinstall": "parallelshell 'npm run install-frontend' 'npm run install-backend'",
     "postwatch": "echo Watching on port $npm_package_config_port",
+    "prestart": "npm run build",
+    "start": "cd $npm_package_config_backendPath && npm run start",
     "test": "parallelshell 'npm run test-backend' 'npm run test-frontend'",
     "test-backend": "cd $npm_package_config_backendPath && npm run test",
     "test-frontend": "cd $npm_package_config_frontendPath && npm run test",
