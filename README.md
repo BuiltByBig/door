@@ -50,12 +50,37 @@ echo "source ~/.nvm/nvm.sh" >> ~/.bashrc
 echo "source ~/.nvm/nvm.sh" >> ~/.profile
 sudo reboot
 
+
 # Setup the door application
 git clone https://github.com/BuiltByBig/door.git ~/door
 cd ~/door
 nvm install
 nvm use
 npm install
+```
+
+
+### Change hostname (optional)
+
+Setup network name which allows you to visi "raspberrypi.local" on your network:
+
+```bash
+sudo apt-get install avahi-daemon
+```
+
+To change your device hostname, edit `/etc/hosts` (e.g. `sudo nano /etc/hosts`) and change `raspberrypi` to whatever you want on the very last line:
+
+```
+127.0.1.1      raspberrypi
+```
+
+Now change `/etc/hostname` to match what you changed `raspberrypi` to above.
+
+Now commit the changes and reboot:
+
+```bash
+sudo /etc/init.d/hostname.sh
+sudo reboot
 ```
 
 
