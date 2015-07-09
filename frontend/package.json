@@ -31,7 +31,6 @@
     "lint": "eslint .",
     "prebuild": "npm run clean",
     "predev-server": "npm run build-development",
-    "prestart": "npm run build",
     "start": "http-server $npm_package_config_distPath",
     "test": "NODE_ENV=test karma start",
     "watch": "parallelshell 'npm run dev-server' 'npm run watch-test'",
