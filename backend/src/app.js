@@ -1,3 +1,5 @@
+require('dotenv').load()
+
 var chalk = require('chalk')
 var express = require('express')
 var path = require('path')
