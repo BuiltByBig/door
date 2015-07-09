@@ -30,6 +30,7 @@
     "sinon": "^1.15.4"
   },
   "dependencies": {
+    "basic-auth": "^1.0.3",
     "body-parser": "^1.13.1",
     "chalk": "^1.0.0",
     "dotenv": "^1.2.0",

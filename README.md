@@ -27,6 +27,7 @@ The backend wraps the file in a RESTful JSON API that the frontend consumes to l
 2. `nvm install` to install the required iojs version for this app.
 3. `nvm use` to use the newly installed version of iojs.
 4. `npm install` to install application dependencies (and dependencies for `frontend` and `backend`)
+5. `cp backend/.env.example backend/.env` and edit port and authentication username and password.
 
 
 ## Development
