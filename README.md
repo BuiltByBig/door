@@ -57,18 +57,16 @@ git clone https://github.com/BuiltByBig/door.git ~/door
 cd ~/door
 nvm install
 nvm use
+nvm alias default iojs
 npm install
-
-# Run the application using forever
-npm install forever -g
-forever start -c "npm start" /home/pi/door/
 ```
 
 ### Run the application on boot
 
 ```bash
+npm install forever -g
 sudo touch /etc/init.d/door
-echo 'forever start -c "npm start" /home/pi/door/' | sudo tee --append /etc/init.d/door
+echo 'cd /home/pi/door && forever start -c "npm start" ./' | sudo tee --append /etc/init.d/door
 sudo chmod 755 /etc/init.d/door
 sudo update-rc.d door defaults
 ```
