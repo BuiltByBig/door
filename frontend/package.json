@@ -24,7 +24,7 @@
   "scripts": {
     "build": "webpack --colors",
     "build-development": "npm run build -- --config webpack.development.config.js",
-    "build-production": "npm run build -- --config webpack.production.config.js -p",
+    "build-production": "npm run build -- --progress --config webpack.production.config.js -p",
     "clean": "rm -fr $npm_package_config_distPath/*",
     "dev-server": "webpack-dev-server --config webpack.development.config.js --history-api-fallback --colors --inline --hot",
     "env": "env",
