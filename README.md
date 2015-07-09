@@ -103,4 +103,4 @@ Now you should be able to go to http://door.local and see the application runnin
 - [x] Read JSON from filesystem.
 - [x] RESTful API to read and update JSON file.
 - [ ] Coverage tool.
-- [ ] Dist build for deployment.
+- [x] Dist build for deployment.
