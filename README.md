@@ -57,6 +57,19 @@ cd ~/door
 nvm install
 nvm use
 npm install
+
+# Run the application using forever
+npm install forever -g
+forever start -c "npm start" /home/pi/door/
+```
+
+### Run the application on boot
+
+```bash
+sudo touch /etc/init.d/door
+echo 'forever start -c "npm start" /home/pi/door/' | sudo tee --append /etc/init.d/door
+sudo chmod 755 /etc/init.d/door
+sudo update-rc.d door defaults
 ```
 
 
@@ -68,7 +81,7 @@ Setup network name which allows you to visi "raspberrypi.local" on your network:
 sudo apt-get install avahi-daemon
 ```
 
-To change your device hostname, edit `/etc/hosts` (e.g. `sudo nano /etc/hosts`) and change `raspberrypi` to whatever you want on the very last line:
+To change your device hostname, edit `/etc/hosts` (e.g. `sudo nano /etc/hosts`) and **change `raspberrypi` to whatever you want** (e.g. `doorlock`) on the very last line:
 
 ```
 127.0.1.1      raspberrypi
@@ -82,6 +95,8 @@ Now commit the changes and reboot:
 sudo /etc/init.d/hostname.sh
 sudo reboot
 ```
+
+Now you should be able to go to http://doorlock.local and see the application running.
 
 
 ## TODO
