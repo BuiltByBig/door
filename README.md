@@ -82,7 +82,7 @@ Setup network name which allows you to visi "raspberrypi.local" on your network:
 sudo apt-get install avahi-daemon
 ```
 
-To change your device hostname, edit `/etc/hosts` (e.g. `sudo nano /etc/hosts`) and **change `raspberrypi` to whatever you want** (e.g. `doorlock`) on the very last line:
+To change your device hostname, edit `/etc/hosts` (e.g. `sudo nano /etc/hosts`) and **change `raspberrypi` to whatever you want** (e.g. `door`) on the very last line:
 
 ```
 127.0.1.1      raspberrypi
@@ -97,7 +97,7 @@ sudo /etc/init.d/hostname.sh
 sudo reboot
 ```
 
-Now you should be able to go to http://doorlock.local and see the application running.
+Now you should be able to go to http://door.local and see the application running.
 
 
 ## TODO
