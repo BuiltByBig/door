@@ -14,7 +14,6 @@
     "install-frontend": "cd $npm_package_config_frontendPath && npm install",
     "postinstall": "parallelshell 'npm run install-frontend' 'npm run install-backend'",
     "postwatch": "echo Watching on port $npm_package_config_port",
-    "prestart": "npm run build",
     "start": "cd $npm_package_config_backendPath && npm run start",
     "test": "parallelshell 'npm run test-backend' 'npm run test-frontend'",
     "test-backend": "cd $npm_package_config_backendPath && npm run test",
