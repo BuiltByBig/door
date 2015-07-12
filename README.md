@@ -61,7 +61,7 @@ nvm alias default iojs
 npm install
 
 ## Run the application
-npm run build-production
+npm run build
 npm start
 ```
 
