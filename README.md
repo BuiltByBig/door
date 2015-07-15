@@ -45,7 +45,7 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # Install npm and nvm:
-sudo apt-get install git npm
+sudo apt-get install git npm psmisc
 git clone https://github.com/creationix/nvm.git ~/.nvm
 echo "source ~/.nvm/nvm.sh" >> ~/.bashrc
 echo "source ~/.nvm/nvm.sh" >> ~/.profile
