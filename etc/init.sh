@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DOOR_ROOT="/home/pi/door"
-
+export HOME="/home/pi"
+DOOR_ROOT="$HOME/door"
 source ~/.nvm/nvm.sh
 cd $DOOR_ROOT
 nvm use
