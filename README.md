@@ -101,6 +101,14 @@ sudo reboot
 Now you should be able to go to http://door.local and see the application running.
 
 
+## Notes / Resources
+
+- [Mounting Raspberry Pi images on OSX](http://pi.gbaman.info/?p=328)
+- [Setup wifi on Debian](https://wiki.debian.org/WiFi/HowToUse#Command_Line) (particularly the WPA section)
+- Restart wifi on Debian: `ifdown wlan0 && ifup wlan0`
+- [Set Locale on Debian](https://bbs.archlinux.org/viewtopic.php?id=156845)
+
+
 ## TODO
 
 - [x] Read JSON from filesystem.
